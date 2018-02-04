@@ -260,8 +260,117 @@ public class CampaignDetailsRestClientUtil
                
                CampaignAdDetailsVO campaignAdDetailsVO = new CampaignAdDetailsVO();
                
+               
                campaignAdDetailsVO.setId(campaignAdDetailJsonObj.getString("ad_id"));
                campaignAdDetailsVO.setName(campaignAdDetailJsonObj.getString("ad_name"));
+               
+               JSONObject statsJsonObj = campaignAdDetailJsonObj.getJSONObject("stats");
+               
+               campaignAdDetailsVO.setStart_day(statsJsonObj.getString("start_day"));
+               campaignAdDetailsVO.setEnd_day(statsJsonObj.getString("end_day"));
+               
+               JSONArray bucketsJsonArray = jsonObj.getJSONArray("buckets");
+               Iterator<Object> bucketsIterator = bucketsJsonArray.iterator();
+               
+               while(bucketsIterator.hasNext())
+               {
+            	   JSONObject bucketsJsonObj = (JSONObject)bucketsIterator.next();
+            	   
+            	   JSONObject bucketsDataJsonObj = bucketsJsonObj.getJSONObject("data");
+            	   
+            	   campaignAdDetailsVO.setImpressions(bucketsDataJsonObj.getString("impressions"));
+            	   campaignAdDetailsVO.setViews(bucketsDataJsonObj.getString("views"));
+            	   campaignAdDetailsVO.setPlay_rate(bucketsDataJsonObj.getString("play_rate"));
+            	   campaignAdDetailsVO.setViewed_minutes(bucketsDataJsonObj.getString("viewed_minutes"));
+            	   campaignAdDetailsVO.setPlaytime_per_view(bucketsDataJsonObj.getString("playtime_per_view"));
+            	   campaignAdDetailsVO.setPct_viewed_avg(bucketsDataJsonObj.getString("pct_viewed_avg"));
+            	   campaignAdDetailsVO.setCompletions25(bucketsDataJsonObj.getString("completions25"));
+            	   campaignAdDetailsVO.setCompletions50(bucketsDataJsonObj.getString("completions50"));
+            	   campaignAdDetailsVO.setCompletions75(bucketsDataJsonObj.getString("completions75"));
+            	   campaignAdDetailsVO.setCompletions100(bucketsDataJsonObj.getString("completions100"));
+            	   campaignAdDetailsVO.setPct_completions25(bucketsDataJsonObj.getString("pct_completions25"));
+            	   campaignAdDetailsVO.setPct_completions50(bucketsDataJsonObj.getString("pct_completions50"));
+            	   campaignAdDetailsVO.setPct_completions75(bucketsDataJsonObj.getString("pct_completions75"));
+            	   campaignAdDetailsVO.setPct_completions100(bucketsDataJsonObj.getString("pct_completions100"));
+            	   campaignAdDetailsVO.setShares_facebook(bucketsDataJsonObj.getString("shares_facebook"));
+            	   campaignAdDetailsVO.setShares_twitter(bucketsDataJsonObj.getString("shares_twitter"));
+            	   campaignAdDetailsVO.setEngagements(bucketsDataJsonObj.getString("engagements"));
+            	   campaignAdDetailsVO.setFacebook_fan_page_clicks(bucketsDataJsonObj.getString("facebook_fan_page_clicks"));
+            	   campaignAdDetailsVO.setVideo_and_overlay_clicks(bucketsDataJsonObj.getString("video_and_overlay_clicks"));
+            	   campaignAdDetailsVO.setTotal_click_throughs(bucketsDataJsonObj.getString("total_click_throughs"));
+            	   campaignAdDetailsVO.setCtr(bucketsDataJsonObj.getString("ctr"));
+            	   campaignAdDetailsVO.setCompanion_impressions(bucketsDataJsonObj.getString("companion_impressions"));
+            	   campaignAdDetailsVO.setCompanion_click_throughs(bucketsDataJsonObj.getString("companion_click_throughs"));
+            	   campaignAdDetailsVO.setCompanion_ctr(bucketsDataJsonObj.getString("companion_ctr"));
+            	   campaignAdDetailsVO.setConversions_impressions(bucketsDataJsonObj.getString("conversions_impressions"));
+            	   campaignAdDetailsVO.setConversions_impressions_avg_days(bucketsDataJsonObj.getString("conversions_impressions_avg_days"));
+            	   campaignAdDetailsVO.setConversions_view(bucketsDataJsonObj.getString("conversions_view"));
+            	   campaignAdDetailsVO.setConversions_view_avg_days(bucketsDataJsonObj.getString("conversions_view_avg_days"));
+            	   campaignAdDetailsVO.setConversions_click_through(bucketsDataJsonObj.getString("conversions_click_through"));
+            	   campaignAdDetailsVO.setConversions_click_through_avg_days(bucketsDataJsonObj.getString("conversions_click_through_avg_days"));
+            	   campaignAdDetailsVO.setViewability_instrumented_impressions(bucketsDataJsonObj.getString("viewability_instrumented_impressions"));
+            	   campaignAdDetailsVO.setViewability_unmeasurable_iframe(bucketsDataJsonObj.getString("viewability_unmeasurable_iframe"));
+            	   campaignAdDetailsVO.setViewability_unmeasurable_other(bucketsDataJsonObj.getString("viewability_unmeasurable_other"));
+            	   campaignAdDetailsVO.setViewable_impressions(bucketsDataJsonObj.getString("viewable_impressions"));
+            	   campaignAdDetailsVO.setViewable_impression_rate(bucketsDataJsonObj.getString("viewable_impression_rate"));
+            	   campaignAdDetailsVO.setViewable_pct_impressions(bucketsDataJsonObj.getString("viewable_pct_impressions"));
+            	   campaignAdDetailsVO.setViewable_views(bucketsDataJsonObj.getString("viewable_views"));
+            	   campaignAdDetailsVO.setViewable_complete25(bucketsDataJsonObj.getString("viewable_complete25"));
+            	   campaignAdDetailsVO.setViewable_complete50(bucketsDataJsonObj.getString("viewable_complete50"));
+            	   campaignAdDetailsVO.setViewable_complete75(bucketsDataJsonObj.getString("viewable_complete75"));
+            	   campaignAdDetailsVO.setViewable_complete100(bucketsDataJsonObj.getString("viewable_complete100"));
+            	   campaignAdDetailsVO.setViewable_pct_complete25(bucketsDataJsonObj.getString("viewable_pct_complete25"));
+            	   campaignAdDetailsVO.setViewable_pct_complete50(bucketsDataJsonObj.getString("viewable_pct_complete50"));
+            	   campaignAdDetailsVO.setViewable_pct_complete75(bucketsDataJsonObj.getString("viewable_pct_complete75"));
+            	   campaignAdDetailsVO.setViewable_pct_complete100(bucketsDataJsonObj.getString("viewable_pct_complete100"));
+            	   campaignAdDetailsVO.setNot_viewable_impressions(bucketsDataJsonObj.getString("not_viewable_impressions"));
+            	   campaignAdDetailsVO.setNot_viewable_pct_impressions(bucketsDataJsonObj.getString("not_viewable_pct_impressions"));
+            	   campaignAdDetailsVO.setPlayer_width_avg(bucketsDataJsonObj.getString("player_width_avg"));
+            	   campaignAdDetailsVO.setPlayer_height_avg(bucketsDataJsonObj.getString("player_height_avg"));
+            	   campaignAdDetailsVO.setMobile_installs(bucketsDataJsonObj.getString("mobile_installs"));
+            	   campaignAdDetailsVO.setFacebook_page_likes(bucketsDataJsonObj.getString("facebook_page_likes"));
+            	   campaignAdDetailsVO.setFacebook_post_comments(bucketsDataJsonObj.getString("facebook_post_comments"));
+            	   campaignAdDetailsVO.setFacebook_post_likes(bucketsDataJsonObj.getString("facebook_post_likes"));
+            	   campaignAdDetailsVO.setFacebook_post_shares(bucketsDataJsonObj.getString("facebook_post_shares"));
+            	   campaignAdDetailsVO.setClick_through_view_rate(bucketsDataJsonObj.getString("click_through_view_rate"));
+            	   campaignAdDetailsVO.setViewable_measurable_impressions(bucketsDataJsonObj.getString("viewable_measurable_impressions"));
+            	   campaignAdDetailsVO.setViewable_measurable_rate(bucketsDataJsonObj.getString("viewable_measurable_rate"));
+            	   campaignAdDetailsVO.setViewable_unmeasurable_impressions(bucketsDataJsonObj.getString("viewable_unmeasurable_impressions"));
+            	   campaignAdDetailsVO.setViewable_unmeasurable_rate_iframe(bucketsDataJsonObj.getString("viewable_unmeasurable_rate_iframe"));
+            	   campaignAdDetailsVO.setViewable_unmeasurable_rate_not_supported(bucketsDataJsonObj.getString("viewable_unmeasurable_rate_not_supported"));
+            	   campaignAdDetailsVO.setViewable_unmeasurable_rate_other(bucketsDataJsonObj.getString("viewable_unmeasurable_rate_other"));
+            	   campaignAdDetailsVO.setViewable_unmeasurable_rate_total(bucketsDataJsonObj.getString("viewable_unmeasurable_rate_total"));
+            	   campaignAdDetailsVO.setSurvey_starts(bucketsDataJsonObj.getString("survey_starts"));
+            	   campaignAdDetailsVO.setSurvey_completions(bucketsDataJsonObj.getString("survey_completions"));
+            	   campaignAdDetailsVO.setTotal_fees(bucketsDataJsonObj.getString("total_fees"));
+            	   campaignAdDetailsVO.setBillable_total_fees(bucketsDataJsonObj.getString("billable_total_fees"));
+            	   campaignAdDetailsVO.setNon_billable_total_fees(bucketsDataJsonObj.getString("non_billable_total_fees"));
+            	   campaignAdDetailsVO.setBillable_media_fees(bucketsDataJsonObj.getString("billable_media_fees"));
+            	   campaignAdDetailsVO.setBillable_data_fees(bucketsDataJsonObj.getString("billable_data_fees"));
+            	   campaignAdDetailsVO.setBillable_other_fees(bucketsDataJsonObj.getString("billable_other_fees"));
+            	   campaignAdDetailsVO.setNon_billable_data_fees(bucketsDataJsonObj.getString("non_billable_data_fees"));
+            	   campaignAdDetailsVO.setNon_billable_media_fees(bucketsDataJsonObj.getString("non_billable_media_fees"));
+            	   campaignAdDetailsVO.setNon_billable_other_fees(bucketsDataJsonObj.getString("non_billable_other_fees"));
+            	   campaignAdDetailsVO.setAdvertiser_data_fees(bucketsDataJsonObj.getString("advertiser_data_fees"));
+            	   campaignAdDetailsVO.setAdvertiser_media_fees(bucketsDataJsonObj.getString("advertiser_media_fees"));
+            	   campaignAdDetailsVO.setAdvertiser_other_fees(bucketsDataJsonObj.getString("advertiser_other_fees"));
+            	   campaignAdDetailsVO.setAdvertiser_total_fees(bucketsDataJsonObj.getString("advertiser_total_fees"));
+            	   campaignAdDetailsVO.setCpa(bucketsDataJsonObj.getString("cpa"));
+            	   campaignAdDetailsVO.setCpc(bucketsDataJsonObj.getString("cpc"));
+            	   campaignAdDetailsVO.setCpcv(bucketsDataJsonObj.getString("cpcv"));
+            	   campaignAdDetailsVO.setCpi(bucketsDataJsonObj.getString("cpi"));
+            	   campaignAdDetailsVO.setCpm(bucketsDataJsonObj.getString("cpm"));
+            	   campaignAdDetailsVO.setCpv(bucketsDataJsonObj.getString("cpv"));
+            	   campaignAdDetailsVO.setVcpm(bucketsDataJsonObj.getString("vcpm"));
+            	   campaignAdDetailsVO.setMedia_spend_total(bucketsDataJsonObj.getString("media_spend_total"));
+            	   campaignAdDetailsVO.setMedia_spend_cpm(bucketsDataJsonObj.getString("media_spend_cpm"));
+            	   campaignAdDetailsVO.setData_spend_total(bucketsDataJsonObj.getString("data_spend_total"));
+            	   campaignAdDetailsVO.setData_spend_cpm(bucketsDataJsonObj.getString("data_spend_cpm"));
+            	   campaignAdDetailsVO.setOther_spend_cpm(bucketsDataJsonObj.getString("other_spend_cpm"));
+            	   campaignAdDetailsVO.setOther_spend_total(bucketsDataJsonObj.getString("other_spend_total"));
+            	   
+            	   break;
+               }
                
                adDetails.add(campaignAdDetailsVO);
             }
